@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="588718a1-61ec-4340-9afc-1b2d2ef8b3b2" name="tx-firstLaravel" url="http://121.4.196.207:8888/site">
+        <fileTransfer host="121.4.196.207" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
