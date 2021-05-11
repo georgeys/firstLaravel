@@ -8,16 +8,28 @@ use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
+
+    public function __construct()
+    {
+        //中间件‘auth’为名称 ‘except’排除/‘only’指定方法
+        $this->middleware('auth',[
+            'except' => ['show','create','store']
+        ]);
+    }
+
+    //注册
     public function create()
     {
         return view('users.create');
     }
 
+    //展示
     public function show(User $user)
     {
         return view('users.show', compact('user'));
     }
 
+    //登录
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -39,11 +51,13 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
         return view('users.edit',compact('user'));
     }
 
     public function update(User $user,Request $request)
     {
+        $this->authorize('update', $user);
         $this->validate($request,[
             'name' => 'required|max:50',
             'password' => 'required|confirmed|min:6'
