@@ -13,7 +13,7 @@ class UsersController extends Controller
     {
         //中间件‘auth’为名称 ‘except’排除/‘only’指定方法
         $this->middleware('auth',[
-            'except' => ['show','create','store']
+            'except' => ['show','create','store','index']
         ]);
 
         //仅允许未登录的访问注册页面
@@ -85,5 +85,13 @@ class UsersController extends Controller
     {
         $users = User::paginate(10);
         return view('users.index',compact('users'));
+    }
+
+    public function destroy(User $user)
+    {
+        $this->authorize('destroy',$user);
+        $user->delete();
+        session()->flash('success','删除ok');
+        return back();
     }
 }
