@@ -23,6 +23,6 @@ class UserPolicy
     //第一个为当前登录的用户，第二个是进行验证的用户
     public function update(User $currentUser,User $user)
     {
-        return$currentUser->id  === $user->id;
+        return $currentUser->id  === $user->id;
     }
 }
