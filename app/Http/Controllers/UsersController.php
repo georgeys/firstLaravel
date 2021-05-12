@@ -50,7 +50,7 @@ class UsersController extends Controller
         ]);
 
         Auth::login($user);
-        session()->flush('success','欢迎，您将在这里开启一段新的旅程~');
+        session()->flash('success','欢迎，您将在这里开启一段新的旅程~');
         return redirect()->route('users.show',[$user]);
     }
 
@@ -76,8 +76,14 @@ class UsersController extends Controller
 
         $user->update($data);
 
-        session()->flush('success','个人资料更新成功！');
+        session()->flash('success','个人资料更新成功！');
 
         return redirect()->route('users.show',$user->id);
+    }
+
+    public function index()
+    {
+        $users = User::paginate(10);
+        return view('users.index',compact('users'));
     }
 }
