@@ -43,6 +43,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function statuses()
+    {
+        return $this->hasMany(Status::class);
+    }
+
     //默认头像
     public function gravatar($size = '100')
     {
